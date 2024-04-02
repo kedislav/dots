@@ -1,0 +1,112 @@
+# KED'S OHMYZSH CONFIG
+# MAIN CONFIG FILE [ZSHRC]
+# this file is symlinked to the home dir's .zshrc
+
+#//DIRECTORY DEFINITION
+# Made to tidy up the /home dir.
+
+ZSH=$HOME/.config/zsh/ohmyzsh
+ZDOTDIR=$HOME/.config/zsh
+ZSH_CUSTOM=$HOME/.config/zsh/custom
+ZSH_CACHE_DIR=$HOME/.cache/zsh
+ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump
+
+GOPATH=$HOME/.go
+
+CASE_SENSITIVE=false
+HYPHEN_INSENSITIVE=true
+COMPLETION_WAITING_DOTS=false
+DISABLE_AUTO_TITLE=true
+DISABLE_MAGIC_FUNCTIONS=false
+DISABLE_LS_COLORS=false
+ENABLE_CORRECTION=false
+HIST_STAMPS="[%d/%m]"
+
+ZSH_THEME="typewritten"
+
+#//CUSTOM PROMPT THEME
+# Options for typewritten. Downloaded from https://typewritten.dev
+
+export TYPEWRITTEN_PROMPT_LAYOUT="multiline"
+export TYPEWRITTEN_ARROW_SYMBOL=">>"
+export TYPEWRITTEN_RELATIVE_PATH="home"
+export TYPEWRITTEN_COLOR_MAPPINGS="primary:#FF0055;secondary:#F2F2F2;accent:default;notice:#C778DD;info_negative:#E06B74;info_positive:default;info_neutral_1:#FF0055;info_neutral_2:#62AEEF;info_special:#55B6C2"
+
+#//PLUGINS
+# Define user plugins.
+# Check https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins for more info.
+
+plugins=(git colored-man-pages safe-paste urltools zoxide zsh-autosuggestions zsh-syntax-highlighting) # zsh-syntax-highlighting has to be at the end.
+
+#//WARNING, DO NOT TOUCH!
+source $ZSH/oh-my-zsh.sh
+#//WARNING, DO NOT TOUCH!
+
+#//USERSPACE
+# Set variables for user space.
+# See man export for more info.
+export LANG=en_US.UTF-8
+export TERM=xterm-256color
+export EDITOR="nvim"
+# specific to go binaries cause they end up in a visually cluttering folder in home
+export GOPATH
+
+#//ALIASES
+# Configure aliases for commands. Run man alias for more info.
+# Dependencies: bat curl fzf grc lsd w3m
+
+alias zshconfig="$EDITOR ~/.config/zsh/zshrc" # access zshrc easily.
+alias exit="kill -9 $$" # commit suicide when exiting.
+alias path="print -l $path" # print path on individual lines.
+alias clr="clear; echo Logged in on $TTY, as $USERNAME in directory $PWD." # clear the screen and prints the current user, TTY, and directory.
+alias nmap="grc nmap" # colorize nmap command.
+alias ip="grc ip" # colorize ip command.
+alias ping="grc ping" # colorize ping command.
+alias ls="lsd" # change ls for lsd.
+alias lst="ls --tree"
+alias cd="z" # change cd for zoxide.
+alias cat="bat" # change cat for bat.
+alias pubip="curl -sS https://icanhazip.com/ | lolcat" # get public ip.
+alias w3mimg="w3m -o inline_img_protocol=4" # run w3m with image loading.
+alias vulnmap="nmap -A -Pn --min-rate 10000 --script vulners.nse --script-timeout=10s"
+alias qrdecode="zbarimg"
+#alias kernelsign="$HOME/.config/kedscripts/kernelsign.sh"
+
+#//CUSTOM COMMANDS
+# Make custom scripts for more user-friendly terminal usage.
+
+# geoip == get geolocation info on an ip address.
+geoip() {
+  if [ ! -n "$1" ]; then
+    echo "Enter a valid IP address."
+  else
+    curl -sS https://ipinfo.io/$1 | jq #&& curl -sS http://ip-api.com/$1
+  fi
+}
+
+#emailrep == get information about an email address.
+mailinfo() {
+  if [ ! -n "$1" ]; then
+    echo "Enter a valid email address."
+  else
+    curl -sS http://emailrep.io/$1 | jq
+  fi
+}
+
+# shodanscan == get port info for a host from shodan.
+shodanscan() {
+  if [ ! -n "$1" ]; then
+    echo "Enter a valid IP address."
+  else
+    curl -sS https://internetdb.shodan.io/$1 | jq
+  fi
+}
+
+# pnpm
+export PNPM_HOME="/home/ked/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+

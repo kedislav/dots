@@ -1,0 +1,181 @@
+/* Select Color File */
+@import "/home/ked/.config/themes/css/mocha.css";
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: JetBrains Mono NF;
+  font-weight: bold;
+  font-size: 14px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: @surface0;
+}
+
+tooltip {
+  background: @base;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: @white0;
+}
+
+/* Depending on the order of the modules, make sure the ones on the left have border-radius = 10px 0px 0px 10px, and the ones on the right have border-radius - 0px 10px 10px 0px */
+
+#workspaces button {
+  padding: 5px;
+  color: @surface2;
+  background: @base;
+  border-radius: 10px;
+}
+#workspaces button.active {
+  color: @lavender;
+  border-radius: 10px;
+}
+#workspaces button.urgent {
+  color: @flamingo;
+  border-radius: 10px;
+}
+#workspaces button:hover {
+  color: @subtext0;
+  background: @base;
+  border-radius: 10px;
+}
+
+#custom-updates,
+#custom-wttr,
+#window,
+#clock,
+#cpu,
+#backlight,
+#battery,
+#bluetooth,
+#temperature,
+#memory,
+#wireplumber,
+#pulseaudio,
+#network,
+#workspaces,
+#tray {
+  background: @base;
+  padding: 0px 12px;
+  margin: 5px 0px;
+  margin-top: 10px;
+  border: 1px solid @base;
+}
+
+#backlight {
+  color: @text;
+}
+
+#battery {
+  color: @text;
+  border-radius: 0px 10px 10px 0px;
+}
+#battery.charging {
+  color: @teal;
+}
+#battery.charging.full {
+  color: @green;
+}
+#battery.warning {
+  color: @yellow;
+}
+#battery.critical {
+  color: @red;
+}
+
+#bluetooth,
+#bluetooth.on {
+  color: @text;
+}
+#bluetooth.off {
+  color: @red;
+}
+#bluetooth.discoverable,
+#bluetooth.discovering {
+  color: @green;
+}
+#bluetooth.pairable {
+  color: @yellow;
+}
+#bluetooth.connected {
+  color: @blue;
+}
+
+#clock {
+  color: @text;
+  border-radius: 10px 0px 0px 10px;
+}
+
+#cpu {
+  color: @subtext0;
+  border-radius: 10px 0px 0px 10px;
+}
+
+#custom-updates {
+  color: @lavender;
+}
+
+#custom-wttr {
+  font-family:
+    Meteocons,
+    JetBrains Mono Nerd Font;
+  color: @text;
+}
+
+#memory {
+  color: @subtext0;
+}
+
+#network {
+  color: @text;
+}
+
+#pulseaudio {
+  color: @text;
+}
+
+#taskbar {
+  color: @text;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+#temperature {
+  color: @subtext0;
+}
+#temperature.critical {
+  color: @red;
+}
+
+#tray {
+  color: @text;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+#tray.menu {
+  color: @text;
+  background: @base;
+  border-radius: 10px;
+}
+
+#wireplumber {
+  color: @text;
+}
+#wireplumber.muted {
+  color: @red;
+}
+
+#window {
+  color: @teal;
+  border-radius: 0px 10px 10px 0px;
+  padding-right: 10px;
+}
+
+#workspaces {
+  background: @base;
+}

@@ -1,0 +1,25 @@
+width = 800
+height = 600
+
+layer = overlay
+location = center
+orientation = vertical
+mode = drun
+term = kitty
+prompt = >> you lost or something? <<
+
+columns = 2
+
+halign = fill
+valign = start
+content_halign = start
+
+line_wrap = word
+allow_markup = true
+allow_images = true
+image_size = 32
+no_actions = true
+hide_scroll = true
+hide_search = false
+insensitive = true
+gtk_dark = true
